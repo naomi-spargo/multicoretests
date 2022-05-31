@@ -29,12 +29,12 @@ struct
     | RMapNone of int cas_result
     | RMapSome of int cas_result
     | RIncr
-    | RDecr [@@deriving show { with_path = false }]
+    | RDecr [@@deriving show { with_path = false }, eq]
   and 'a cas_result
     = 'a Kcas.cas_result =
     | Aborted
     | Failed
-    | Success of 'a [@deriving show { with_path = false }]
+    | Success of 'a [@deriving show { with_path = false }, eq]
 
   let init () = Kcas.ref 0
 
@@ -82,12 +82,12 @@ struct
     | RMapNone of int cas_result
     | RMapSome of int cas_result
     | RIncr
-    | RDecr [@@deriving show { with_path = false }]
+    | RDecr [@@deriving show { with_path = false }, eq]
   and 'a cas_result
     = 'a Kcas.cas_result =
     | Aborted
     | Failed
-    | Success of 'a [@deriving show { with_path = false }]
+    | Success of 'a [@deriving show { with_path = false }, eq]
 
   let init () = Kcas.W1.ref 0
 
