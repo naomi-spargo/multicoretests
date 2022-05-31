@@ -21,10 +21,10 @@ depends: [
   "multicorecheck"      {= version}
 ]
 pin-depends: [
-  ["qcheck-core.0.18.1"        "git+https://github.com/c-cube/qcheck.git#master"]
-  ["qcheck-ounit.0.18.1"       "git+https://github.com/c-cube/qcheck.git#master"]
-  ["qcheck.0.18.1"             "git+https://github.com/c-cube/qcheck.git#master"]
-  ["ppx_deriving_qcheck.0.2.0" "git+https://github.com/c-cube/qcheck.git#master"]
+  ["qcheck-core.0.18.1"        "git+https://github.com/jmid/qcheck.git#add-negtest"]
+  ["qcheck-ounit.0.18.1"       "git+https://github.com/jmid/qcheck.git#add-negtest"]
+  ["qcheck.0.18.1"             "git+https://github.com/jmid/qcheck.git#add-negtest"]
+  ["ppx_deriving_qcheck.0.2.0" "git+https://github.com/jmid/qcheck.git#add-negtest"]
 
   ["domainslib.0.4.2"          "git+https://github.com/ocaml-multicore/domainslib#master"]
   ["kcas.0.14"                 "git+https://github.com/ocaml-multicore/kcas#master"]
