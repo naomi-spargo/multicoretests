@@ -25,8 +25,8 @@ type sut = bytes
 let arb_cmd (s : state) : cmd arbitrary =
   let bind_keep_input (g : 'a Gen.t) (f: 'a -> 'b Gen.t): ('a * 'b) Gen.t =
     Gen.(g >>= (fun a -> map (fun b -> (a, b)) (f a))) in
-  let make_index len : int Gen.t = (*skews towards picking a nat <= len*)
-    Gen.(frequency [(len, int_bound len); (1, nat)]) in
+  let make_index _ : int Gen.t = (*skews towards picking a nat <= len*)
+    (* Gen.(frequency [(len, int_bound len); (1, nat)])*) Gen.int in
   let index = make_index (List.length s) in
   let contents : char Gen.t = (*skews towards picking a char in s*)
     Gen.(if (Int.equal (List.length s) 0) then char
@@ -113,7 +113,7 @@ let postcond c (s : state) r =
   | Length, Res((Int, _), r) -> r = List.length s
   | Get n, Res((Result (Char, Exn), _), r) ->
     r = (try Ok (List.nth s n)
-         with Failure _ -> Error (Invalid_argument "index out of bounds"))
+         with _ -> Error (Invalid_argument "index out of bounds"))
   | Set (n, _), Res((Result (Unit, Exn), _), r) ->
     r = if (n >= List.length s)
     then Error (Invalid_argument "index out of bounds")
